@@ -42,7 +42,7 @@ function AdicionaCoordenadasMouse(map, configuracoesLeaflet) {
     logMessages && console.log("   [CreateMap] Coordenadas do mouse adicionada ao mapa.");
 }
 
-function AdicionaEscala(map, largura=150, posicao="bottomleft") {
+function AdicionaEscala(map, largura=150, posicao="bottomright") {
     let escala = L.control.scale({
         position: posicao,
         metric: true,
