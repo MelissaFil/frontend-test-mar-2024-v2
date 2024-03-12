@@ -12,7 +12,7 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
-
+ 
 Route::get('/mapa', function () {
     return Inertia::render('Mapa/Index', [
         'projeto' => [
@@ -125,7 +125,7 @@ Route::get('/mapa', function () {
             ]
         ],
     ]);
-});
+})->name('mapa');
 
 Route::get('/grafico', function () {
     return Inertia::render('Grafico/Index', [
@@ -149,4 +149,4 @@ Route::get('/grafico', function () {
             ]
         ]
     ]);
-});
+})->name('grafico');
