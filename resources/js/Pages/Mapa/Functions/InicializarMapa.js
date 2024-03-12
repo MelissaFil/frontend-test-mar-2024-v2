@@ -18,7 +18,7 @@ function AdicionaCoordenadasMouse(map, configuracoesLeaflet) {
     let proj4text = configuracoesLeaflet.proj4text;
     let projCRS = new L.Proj.CRS(crs, proj4text);
     let mousePosControl = L.control.mousePosition({
-        position: "bottomright",
+        position: "bottomleft", //mudando posição do mouse
         emptyString: "Coordenadas indisponíveis",
         formatter: function (lng, lat) {
             let pt = projCRS.project(L.latLng(lat, lng));
@@ -27,8 +27,18 @@ function AdicionaCoordenadasMouse(map, configuracoesLeaflet) {
             }
             return "Lat.:" + pt.y.toFixed(5) + " | Lon.:" + pt.x.toFixed(5) + "";
         }
+
     });
+    
     map.addControl(mousePosControl);
+    let container = mousePosControl.getContainer();
+    
+    container.style.backgroundColor = "rgba(255, 255, 255, 0.5)"; // Fundo branco com opacidade 0.5
+    container.style.fontSize = "16px"; // Fonte maior
+    container.style.padding = "8px"; // Adicionando algum espaço interno
+    container.style.borderRadius = "4px"; // Borda arredondada
+   
+   
     logMessages && console.log("   [CreateMap] Coordenadas do mouse adicionada ao mapa.");
 }
 
