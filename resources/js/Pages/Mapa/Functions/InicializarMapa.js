@@ -76,10 +76,20 @@ function CriaMenuContexto(map, configuracoesLeaflet) {
     let popup = L.popup();
     map.on("contextmenu", (e) => {
         let coordenada = projCRS.project(L.latLng(e.latlng.lat, e.latlng.lng));
-        if (sistema == 'utm') {
-            let content = "<b>N</b>: " + coordenada.y.toFixed(0) + "<br><br>E</b>: " + coordenada.x.toFixed(0) + "<br>";
+          // Obter a data e hora atual no formato brasileiro
+          let now = new Date();
+          let options = { timeZone: 'America/Sao_Paulo', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+          let dateTimeString = now.toLocaleString('pt-BR', options);
+          
+       
+          ;
+          if (sistema == 'utm') {
+              let content = "<b>N</b>: " + coordenada.y.toFixed(0) + "<br><br>E</b>: " + coordenada.x.toFixed(0) + "<br><br><br";
+              // Adicionar data/hora ao conteúdo, junto com o ícone de calendário
+            content += `<span><br><b>Data/Hora: </b>"+ ${dateTimeString}</span>`
         }
-        let content = "<b>Lat.</b>: " + coordenada.y.toFixed(5) + " <br><br><b>Lon.</b>: " + coordenada.x.toFixed(5) + "<br>";
+        let content = "<b>Lat.</b>: " + coordenada.y.toFixed(5) + " <br><br><b>Lon.</b>: " + coordenada.x.toFixed(5) + "<br><br><br";
+        content += `<span><b>Data/Hora: </b>${dateTimeString}</span>`
         popup.setLatLng(e.latlng).setContent(content).openOn(map);
     });
     logMessages && console.log("   [CreateMap] Menu de contexto adicionado ao mapa.");
