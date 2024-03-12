@@ -77,9 +77,9 @@ function CriaMenuContexto(map, configuracoesLeaflet) {
     map.on("contextmenu", (e) => {
         let coordenada = projCRS.project(L.latLng(e.latlng.lat, e.latlng.lng));
         if (sistema == 'utm') {
-            let content = "<b>N</b>: " + coordenada.y.toFixed(0) + "<br><b>E</b>: " + coordenada.x.toFixed(0) + "<br>";
+            let content = "<b>N</b>: " + coordenada.y.toFixed(0) + "<br><br>E</b>: " + coordenada.x.toFixed(0) + "<br>";
         }
-        let content = "<b>Lat.</b>: " + coordenada.y.toFixed(5) + " <br><b>Lon.</b>: " + coordenada.x.toFixed(5) + "<br>";
+        let content = "<b>Lat.</b>: " + coordenada.y.toFixed(5) + " <br><br><b>Lon.</b>: " + coordenada.x.toFixed(5) + "<br>";
         popup.setLatLng(e.latlng).setContent(content).openOn(map);
     });
     logMessages && console.log("   [CreateMap] Menu de contexto adicionado ao mapa.");
